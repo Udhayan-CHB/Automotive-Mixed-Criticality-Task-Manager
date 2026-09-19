@@ -1,0 +1,39 @@
+MCTM runtime order
+==================
+
+Open seven QNX terminal sessions and keep each process in its own window.
+Start them in this order so the named channels exist before the clients connect.
+
+1) ResourceMonitor
+   cd /path/to/MCTM_final_repo
+   ./ResourceMonitor/build/aarch64le-debug/ResourceMonitor
+
+2) SafetyMonitor
+   ./SafetyMonitor/build/aarch64le-debug/SafetyMonitor
+
+3) VehicleIO
+   ./VehicleIO/build/aarch64le-debug/VehicleIO
+
+4) SafetyTask
+   ./SafetyTask/build/aarch64le-debug/SafetyTask
+
+5) ControlTask
+   ./ControlTask/build/aarch64le-debug/ControlTask
+
+6) Infotainment
+   ./Infotainment/build/aarch64le-debug/Infotainment
+
+7) FaultInjector (one-shot command)
+   ./FaultInjector/build/aarch64le-debug/FaultInjector clear
+   ./FaultInjector/build/aarch64le-debug/FaultInjector control_25ms
+
+Useful fault commands:
+   clear
+   cpu_overload
+   control_delay
+   control_deadline
+   stale_status
+   missing_status
+   sensor_invalid
+   infotainment_load
+   control_25ms
